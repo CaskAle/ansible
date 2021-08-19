@@ -1,0 +1,13 @@
+pios:
+  hosts:
+    pops:
+    mordecai:
+    benson:
+    muscleman:
+ubuntu:
+  hosts:
+    rigby:
+    
+rhel:
+  hosts:
+    hammersmith:
