@@ -1,0 +1,40 @@
+---
+- name: update the software on devices
+  hosts: pios
+  remote_user: pi
+  become: true 
+
+  tasks:
+    - name: diplay the os family
+      debug:
+        var: ansible_facts['os_family']
+        
+    - name: update dnf based devices
+      dnf:
+        name: '*'
+        state: latest
+        update_cache: true
+      when: ansible_facts['os_family'] == "RedHat"
+      notify: 
+        - reboot
+
+    - name: update apt based devices
+      apt:
+        update_cache: true
+        upgrade: dist
+        autoremove: true
+      when: ansible_os_family == "Debian"
+      notify: 
+        - reboot
+
+    - name: update pacman based devices
+      pacman:
+        update_cache: true
+        upgrade: true
+      when: ansible_facts['os_family'] == "Archlinux"
+      notify: 
+        - reboot
+
+  handlers:  
+    - name: reboot
+      reboot:
