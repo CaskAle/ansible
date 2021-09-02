@@ -1,12 +1,17 @@
-pios:
-  hosts:
-    pops:
-    mordecai:
-    benson:
-    muscleman:
-ubuntu:
-  hosts:
-    rigby:
+pi:
+  children:
+    pios:
+      hosts:
+        blue-pi:
+          ansible_host: benson
+        green-pi:
+          ansible_host: pops
+        mordecai:
+        bamboo-pi:
+          ansible_host: muscleman
+    ubuntu:
+      hosts:
+        rigby:
     
 rhel:
   hosts:
