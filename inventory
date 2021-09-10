@@ -13,6 +13,11 @@ pi:
       hosts:
         rigby:
     
+vm:
+  hosts:
+    fedora-vm1:
+    fedora-vm2:
+  
 rhel:
   hosts:
     hammersmith:

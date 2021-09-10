@@ -2,7 +2,6 @@
 - name: prepare raspberry pis after initial build
   hosts: pi
   become: true
-#  remote_user: pi
 
   tasks:
     - name: ensure device boots to console
@@ -13,7 +12,7 @@
       notify:
         - reboot
 
-    - name: ensure hdmi_force_hotplug=1 is set in /boot/config.txt on pi os devices
+    - name: ensure hdmi_force_hotplug=1 is set in /boot/config.txt on pios devices
       lineinfile:
         path: /boot/config.txt
         regex: '^hdmi_force_hotplug'

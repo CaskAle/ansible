@@ -1,7 +1,6 @@
 ---
 - name: update the software on devices
-  hosts: pios
-#  remote_user: pi
+  hosts: all
   become: true 
 
   tasks:
