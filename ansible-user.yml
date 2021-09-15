@@ -1,22 +1,16 @@
 ---
-- name: create and enable the ansible user
-  hosts: all
-  become: true
-  
-  tasks:
-    - name: create ansible user
-      user:
-        name: ansible
-        state: present
+- name: create ansible user
+  user:
+    name: ansible
+    state: present
 
-    - name: copy ssh key to authorized keys
-      authorized_key:
-        user: ansible
-        key: "{{ lookup('file', 'files/id_ed25519-ansible.pub') }}"
-        state: present
+- name: copy ssh key to authorized keys
+  authorized_key:
+    user: ansible
+    key: "{{ lookup('file', 'files/id_ed25519-ansible.pub') }}"
+    state: present
 
-    - name: update sudoers file
-      copy:
-        dest: /etc/sudoers.d/ansible
-        content: "%ansible ALL=(ALL) NOPASSWD: ALL\n"
-        
+- name: update sudoers file
+  copy:
+    dest: /etc/sudoers.d/ansible
+    content: "%ansible ALL=(ALL) NOPASSWD: ALL\n"

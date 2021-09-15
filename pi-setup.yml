@@ -1,14 +1,25 @@
 ---
 - name: prepare raspberry pis after initial build
-  hosts: pi
+  hosts: all
   become: true
 
   tasks:
+    - name: diplay the os family
+      debug:
+        msg: "{{ ansible_facts['os_family'] }} System"
+    
+    - name: setup ansible user
+      include_tasks: ansible-user.yml
+  
+    - name: update software
+      include_tasks: sw-update.yml
+      
     - name: ensure device boots to console
       file:
         dest: /etc/systemd/system/default.target
         src: /lib/systemd/system/multi-user.target
         state: link
+      when: '"pi" in group_names'
       notify:
         - reboot
 
@@ -19,16 +30,6 @@
         insertafter: '#hdmi_force_hotplug'
         line: 'hdmi_force_hotplug=1'
       when: '"pios" in group_names'
-      notify:
-        - reboot
-
-    - name: update software on device
-      apt:
-        update_cache: true
-        upgrade: full
-        autoremove: true
-        autoclean: true
-      when: ansible_pkg_mgr == "apt"  
       notify:
         - reboot
 

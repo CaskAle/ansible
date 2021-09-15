@@ -21,3 +21,7 @@ vm:
 rhel:
   hosts:
     hammersmith:
+
+kids:
+  hosts:
+    skips:
