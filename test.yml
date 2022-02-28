@@ -1,0 +1,12 @@
+---
+- name: test playbook
+  hosts: localhost
+  tasks:
+  - name: test the json filter
+    debug:
+      msg: "{{ query('fileglob', '../*') | to_nice_yaml(indent=2) }}"
+
+  - name: test the json filter
+    debug:
+      msg: "{{ query('fileglob', '../*') }}"
+

@@ -1,0 +1,14 @@
+---
+- name: update system first
+  dnf:
+    name: '*'
+    state: latest
+    update_cache: true
+  notify: 
+    - reboot
+
+- name: install the dnf upgrade plugin
+  dnf:
+    name: dnf-plugin-system-upgrade
+    state: latest
+    update_cache: true

@@ -1,0 +1,8 @@
+---
+- name: shutdown systems
+  hosts: blue-pi, green-pi, bamboo-pi
+  become: true
+
+  tasks:
+    - name: shutdown systems for poweroff
+      community.general.shutdown:

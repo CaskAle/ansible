@@ -1,0 +1,12 @@
+---
+- name: Update software on systems
+  hosts: all
+  become: true
+
+  tasks:
+    - name: include the sw-update tasks
+      include_tasks: sw-update.yml 
+  
+  handlers:
+    - name: reboot
+      reboot:

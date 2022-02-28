@@ -2,26 +2,16 @@ pi:
   children:
     pios:
       hosts:
-        blue-pi:
-          ansible_host: benson
-        green-pi:
-          ansible_host: pops
         mordecai:
-        bamboo-pi:
-          ansible_host: muscleman
+          ansible_user: pi
     ubuntu:
       hosts:
         rigby:
-    
 vm:
   hosts:
     fedora-vm1:
     fedora-vm2:
-  
 rhel:
   hosts:
     hammersmith:
 
-kids:
-  hosts:
-    skips:
