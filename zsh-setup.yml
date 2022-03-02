@@ -1,0 +1,42 @@
+---
+- name: install and configure zsh and oh-my-zsh for zsh_users
+  hosts: pi
+  become: true
+  allow_world_readable_tmpfiles: true
+
+  vars:
+    oh_my_zsh:
+      path: .oh-my-zsh
+      theme: dst
+
+  tasks:
+    - name: Install zsh software
+      package:
+        name: "{{ item }}"
+        state: latest
+      loop: "{{ zsh_packages }}"
+
+    - name: set the zsh shell as default
+      user:
+        name: "{{ item.username }}"
+        shell: /bin/zsh
+      loop: "{{ zsh_users }}"
+
+    - name: template .zshrc
+      template:
+        src: templates/zshrc.j2
+        dest: "{{ item.home_dir_base }}{{ item.username }}/.zshrc"
+        mode: 0644
+        owner: "{{ item.username }}"
+        group: "{{ item.group }}"
+        force: true
+      loop: "{{ zsh_users }}"
+
+    - name: clone oh-my-zsh
+      git:
+        repo: https://github.com/ohmyzsh/ohmyzsh.git
+        dest: "{{ item.home_dir_base }}{{ item.username }}/{{ oh_my_zsh.path }}"
+        clone: true
+      become_user: "{{ item.username }}"
+      become: true
+      loop: "{{ zsh_users }}"

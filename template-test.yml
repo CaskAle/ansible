@@ -1,0 +1,17 @@
+---
+- name: install and configure zsh and oh-my-zsh for zsh_users
+  hosts: rigby chiswick
+  remote_user: ansible
+  become: true
+
+  vars:
+    oh_my_zsh:
+      path: .oh-my-zsh
+      theme: 'dst'
+
+  tasks:
+    - name: show templating results
+      debug:
+        msg: "{{ lookup('template', 'zshrc.j2') }}"      
+      loop: "{{ zsh_users }}"
+      

@@ -1,6 +1,6 @@
 ---
 - name: prepare raspberry pis after initial build
-  hosts: all
+  hosts: pi
   become: true
 
   tasks:

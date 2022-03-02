@@ -3,7 +3,7 @@ pi:
     pios:
       hosts:
         mordecai:
-          ansible_user: pi
+         ansible_user: pi
     ubuntu:
       hosts:
         rigby:
@@ -14,4 +14,3 @@ vm:
 rhel:
   hosts:
     hammersmith:
-

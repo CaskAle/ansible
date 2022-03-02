@@ -1,0 +1,21 @@
+---
+- name: install and configure zsh and oh-my-zsh for zsh_users
+  hosts: iot servers laptops
+  remote_user: ansible
+  become: true
+
+  vars:
+    oh_my_zsh:
+      path: .oh-my-zsh
+      theme: dst
+
+  tasks:
+    - name: template .zshrc
+      template:
+        src: templates/zshrc.j2
+        dest: "{{ item.home_dir_base }}{{ item.username }}/.zshrc"
+        mode: 0644
+        owner: "{{ item.username }}"
+        group: "{{ item.group }}"
+        force: true
+      loop: "{{ zsh_users }}"
