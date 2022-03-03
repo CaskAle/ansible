@@ -1,0 +1,6 @@
+---
+packages:
+  - zsh
+  - podman
+  - htop
+  - bpytop

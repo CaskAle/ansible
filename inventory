@@ -1,16 +1,26 @@
-pi:
+all:
   children:
+    raspberrypi:
+      hosts:
+        rigby:
+      children:
+        pios:
+    servers:
+      children:
+        rhel:
+        virtual:
     pios:
       hosts:
         mordecai:
-         ansible_user: pi
-    ubuntu:
+    arch:
       hosts:
         rigby:
-vm:
-  hosts:
-    fedora-vm1:
-    fedora-vm2:
-rhel:
-  hosts:
-    hammersmith:
+    fedora:
+      hosts:
+        fedora-vm[1:2]:
+    rhel:
+      hosts:
+        hammersmith:
+    virtual:
+      hosts:
+        fedora-vm[1:2]:

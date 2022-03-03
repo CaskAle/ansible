@@ -1,7 +1,8 @@
 ---
 - name: prepare raspberry pis after initial build
-  hosts: pi
+  hosts: pios
   become: true
+
 
   tasks:
     - name: diplay the os family
@@ -10,6 +11,9 @@
     
     - name: setup ansible user
       include_tasks: ansible-user.yml
+
+    - name: install new software
+      include_tasks: sw-install.yml
   
     - name: update software
       include_tasks: sw-update.yml

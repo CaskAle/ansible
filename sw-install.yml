@@ -1,26 +1,21 @@
 ---
 - name: update dnf based devices
   dnf:
-    name: '*'
+    name: "{{ packages }}"
     state: latest
     update_cache: true
   when: ansible_facts['os_family'] == "RedHat"
-  notify: 
-    - reboot
 
 - name: update apt based devices
   apt:
+    name: "{{ packages }}"
+    state: latest
     update_cache: true
-    upgrade: dist
-    autoremove: true
   when: ansible_os_family == "Debian"
-  notify: 
-    - reboot
 
 - name: update pacman based devices
   pacman:
+    name: "{{ packages }}"
+    state: latest
     update_cache: true
-    upgrade: true
   when: "'Archlinux' in ansible_facts['os_family']"
-  notify: 
-    - reboot
