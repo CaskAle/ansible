@@ -1,8 +1,7 @@
 ---
 - name: prepare raspberry pis after initial build
-  hosts: pios
+  hosts: raspberrypi
   become: true
-
 
   tasks:
     - name: diplay the os family
@@ -13,10 +12,10 @@
       include_tasks: ansible-user.yml
 
     - name: install new software
-      include_tasks: sw-install.yml
+      include_tasks: sw-install-tasks.yml
   
-    - name: update software
-      include_tasks: sw-update.yml
+    - name: update all software
+      include_tasks: sw-update-tasks.yml
       
     - name: ensure device boots to console
       file:

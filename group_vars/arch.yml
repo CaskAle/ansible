@@ -1,6 +1,5 @@
-vars:
-  packages:
-    - zsh
-    - podman
-    - htop
-    - bpytop
+packages:
+  - zsh
+  - podman
+  - htop
+  - bpytop

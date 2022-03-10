@@ -1,26 +1,8 @@
 ---
-- name: update dnf based devices
-  dnf:
-    name: '*'
-    state: latest
-    update_cache: true
-  when: ansible_facts['os_family'] == "RedHat"
-  notify: 
-    - reboot
+- name: Update software on systems
+  hosts: all
+  become: true
 
-- name: update apt based devices
-  apt:
-    update_cache: true
-    upgrade: dist
-    autoremove: true
-  when: ansible_os_family == "Debian"
-  notify: 
-    - reboot
-
-- name: update pacman based devices
-  pacman:
-    update_cache: true
-    upgrade: true
-  when: "'Archlinux' in ansible_facts['os_family']"
-  notify: 
-    - reboot
+  tasks:
+  - name: update all software
+    include_tasks: sw-update-tasks
