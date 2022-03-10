@@ -6,3 +6,7 @@
   tasks:
   - name: update all software
     include_tasks: sw-update-tasks
+
+  handlers:
+    - name: reboot
+      reboot:

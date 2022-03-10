@@ -24,7 +24,3 @@
   when: "'Archlinux' in ansible_facts['os_family']"
   notify: 
     - reboot
-
-handlers:
-  - name: reboot
-    reboot:
