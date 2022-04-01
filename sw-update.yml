@@ -5,7 +5,7 @@
 
   tasks:
   - name: update all software
-    include_tasks: sw-update-tasks
+    include_tasks: sw-update-tasks.yml
 
   handlers:
     - name: reboot

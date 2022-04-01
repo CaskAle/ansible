@@ -1,26 +1,19 @@
 all:
   children:
     raspberrypi:
-      hosts:
-        rigby:
       children:
         pios:
     servers:
       children:
         rhel:
-        virtual:
+        fedora:
     pios:
       hosts:
-        mordecai:
-    arch:
-      hosts:
-        rigby:
-    fedora:
-      hosts:
-        fedora-vm[1:2]:
+        mordecai.ankersen.dev:
+        rigby.ankersen.dev:
     rhel:
       hosts:
-        hammersmith:
-    virtual:
-      hosts:
-        fedora-vm[1:2]:
+        hammersmith.ankersen.dev:
+#    fedora:
+#      hosts:
+#        fedora-vm[1:2].ankersen.dev:
