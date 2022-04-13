@@ -11,9 +11,11 @@ all:
       hosts:
         mordecai.ankersen.dev:
         rigby.ankersen.dev:
-    rhel:
+    fedora:
       hosts:
+        clapham.ankersen.dev:
         hammersmith.ankersen.dev:
-#    fedora:
-#      hosts:
-#        fedora-vm[1:2].ankersen.dev:
+        skips.ankersen.dev:
+    arch:
+      hosts:
+        fulham.ankersen.dev:    
