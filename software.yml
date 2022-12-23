@@ -1,6 +1,6 @@
 ---
 - name: install/update software on systems
-  hosts: rigby.ankersen.dev
+  hosts: clients
   become: true
 
   tasks:
@@ -9,7 +9,6 @@
         name: '*'
         state: latest
         update_cache: true
-        autoremove: true
       notify: 
         - reboot
       when: ansible_facts['os_family'] == "RedHat"

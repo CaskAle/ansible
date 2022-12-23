@@ -1,5 +1,6 @@
 ---
 add_packages:
+  - cockpit
   - zsh
   - lm_sensors
   - podman
@@ -10,3 +11,4 @@ remove_packages:
 
 users:
   - troy
+  
