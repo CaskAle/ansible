@@ -1,8 +1,11 @@
 ---
-packages:
+add_packages:
   - zsh
   - lm-sensors
   - bpytop
+
+remove_packages:
+  - htop
 
 users:
   - troy

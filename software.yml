@@ -1,55 +1,46 @@
 ---
 - name: install/update software on systems
-  hosts: all
+  hosts: rigby.ankersen.dev
   become: true
 
   tasks:
-    - name: install and update dnf based software packages
-      block:
-        - name: update dnf based software
-          ansible.builtin.dnf:
-            name: '*'
-            state: latest
-            update_cache: true
-          notify: 
-            - reboot
-        - name: ensure required software is installed on dnf based devices
-          ansible.builtin.dnf:
-            name: "{{ packages }}"
-            state: latest
-            update_cache: true
+    - name: system upgrade - dnf
+      ansible.builtin.dnf:
+        name: '*'
+        state: latest
+        update_cache: true
+        autoremove: true
+      notify: 
+        - reboot
       when: ansible_facts['os_family'] == "RedHat"
 
-    - name: install and update debian based software packages
-      block:
-        - name: update apt based software
-          ansible.builtin.apt:
-            update_cache: true
-            upgrade: dist
-            autoremove: true
-          notify: 
-            - reboot
-        - name: ensure required software is installed on apt based devices
-          ansible.builtin.apt:
-            name: "{{ packages }}"
-            state: latest
-            update_cache: true
+    - name: system upgrade - apt
+      ansible.builtin.apt:
+        upgrade: dist
+        update_cache: true
+        autoclean: true
+        autoremove: true
+      notify: 
+        - reboot
       when: ansible_facts['os_family'] == "Debian"
 
-    - name: install and update pacman based software packages
-      block:
-        - name: update pacman based software
-          community.general.pacman:
-            update_cache: true
-            upgrade: true
-          notify: 
-            - reboot
-        - name: ensure required software is installed on pacman based devices
-          community.general.pacman:
-            name: "{{ packages }}"
-            state: latest
-            update_cache: true    
+    - name: system upgrade - pacman
+      community.general.pacman:
+        update_cache: true
+        upgrade: true
+      notify: 
+        - reboot
       when: ansible_facts['os_family'] == "Archlinux"
+
+    - name: add software packages
+      ansible.builtin.package:
+        name: "{{ add_packages }}"
+        state: latest
+
+    - name: remove software packages
+      ansible.builtin.package:
+        name: "{{ remove_packages }}"
+        state: absent
 
   handlers:
     - name: reboot

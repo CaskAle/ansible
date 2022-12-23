@@ -1,5 +1,12 @@
 ---
-packages:
+add_packages:
   - zsh
+  - lm_sensors
   - podman
   - bpytop
+
+remove_packages:
+  - htop
+
+users:
+  - troy

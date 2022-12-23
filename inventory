@@ -1,14 +1,14 @@
 all:
   children:
-    servers:
+    clients:
       children:
-        rhel:
+        pi_os:
         fedora:
     proxmox:
       hosts:
         wandsworth.ankersen.dev:
         hackney.ankersen.dev:
-    pios:
+    pi_os:
       hosts:
         rigby.ankersen.dev:
     fedora:
