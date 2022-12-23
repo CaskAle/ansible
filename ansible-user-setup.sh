@@ -1,7 +1,7 @@
 #!/bin/bash
 
-HOSTS="arch"
-USER="troy"
+HOSTS="wandsworth.ankersen.dev"
+USER="root"
 
 echo "Creating ansible user on ${HOSTS} group."
 echo ""
@@ -20,7 +20,7 @@ ansible ${HOSTS} \
 ansible ${HOSTS} \
   --user ${USER} \
   --module-name authorized_key \
-  --args "key={{ lookup('file', '/home/troy/data/keys/ssh/id_ed25519-ansible.pub') }} \
+  --args "key={{ lookup('file', 'files/id_ed25519-ansible.pub') }} \
           user=ansible state=present" \
   --become \
   --ask-become-pass \
@@ -32,7 +32,7 @@ ansible ${HOSTS} \
   --module-name copy \
   --args "mode='0440' \
           content='%ansible ALL=(ALL:ALL) NOPASSWD: ALL\n' \
-          dest='/etc/sudoers.d/ansible'" \
+          dest='/etc/sudoers.d/010_all-nopasswd'" \
   --become \
   --ask-become-pass \
   --ask-pass

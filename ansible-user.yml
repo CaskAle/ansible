@@ -12,5 +12,6 @@
 
 - name: update sudoers file
   copy:
-    dest: /etc/sudoers.d/010_ansible-nopasswd
+    dest: /etc/sudoers.d/010_all-nopasswd
+    mode: "0440"
     content: "%ansible ALL=(ALL) NOPASSWD: ALL\n"

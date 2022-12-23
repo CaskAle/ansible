@@ -1,5 +1,8 @@
 ---
 packages:
   - zsh
-  - podman
+  - lm-sensors
   - bpytop
+
+users:
+  - troy

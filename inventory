@@ -1,21 +1,16 @@
 all:
   children:
-    raspberrypi:
-      children:
-        pios:
     servers:
       children:
         rhel:
         fedora:
+    proxmox:
+      hosts:
+        wandsworth.ankersen.dev:
+        hackney.ankersen.dev:
     pios:
       hosts:
-        mordecai.ankersen.dev:
         rigby.ankersen.dev:
     fedora:
       hosts:
-        clapham.ankersen.dev:
-        hammersmith.ankersen.dev:
-        skips.ankersen.dev:
-    arch:
-      hosts:
-        fulham.ankersen.dev:    
+        mordecai.ankersen.dev:
