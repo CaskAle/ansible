@@ -32,7 +32,7 @@ ansible ${HOSTS} \
   --module-name copy \
   --args "mode='0440' \
           content='%ansible ALL=(ALL:ALL) NOPASSWD: ALL\n' \
-          dest='/etc/sudoers.d/010_all-nopasswd'" \
+          dest='/etc/sudoers.d/010_nopasswd'" \
   --become \
   --ask-become-pass \
   --ask-pass
