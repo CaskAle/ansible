@@ -1,17 +1,43 @@
 ---
-- name: create ansible user
-  user:
-    name: ansible
-    state: present
+- name: install/update software on systems
+  hosts: all
+  become: true
 
-- name: copy ssh key to authorized keys
-  authorized_key:
-    user: ansible
-    key: "{{ lookup('file', 'files/id_ed25519-ansible.pub') }}"
-    state: present
+  tasks:
+    - name: create nopasswd group for sudo nopasswd access
+      ansible.builtin.group:
+        name: nopasswd
+        state: present
+        system: true
 
-- name: update sudoers file
-  copy:
-    dest: /etc/sudoers.d/010_nopasswd
-    mode: "0440"
-    content: "%ansible ALL=(ALL) NOPASSWD: ALL\n"
+    - name: create /etc/sudoers.d/010_nopasswd file for sudo nopasswd access
+      ansible.builtin.copy:
+        dest: /etc/sudoers.d/010_nopasswd
+        mode: "0440"
+        content: "%nopasswd ALL=(ALL) NOPASSWD: ALL\n"
+
+    - name: create ansible user
+      ansible.builtin.user:
+        name: ansible
+        state: present
+        groups: nopasswd
+
+    - name: create troy user
+      ansible.builtin.user:
+        name: troy
+        state: present
+        groups: nopasswd
+
+    - name: copy ssh key to ansible authorized keys
+      ansible.posix.authorized_key:
+        user: ansible
+        key: "{{ lookup('file', 'files/id_ed25519-ansible.pub') }}"
+        state: present
+        exclusive: true
+
+    - name: copy ssh key to troy authorized keys
+      ansible.posix.authorized_key:
+        user: troy
+        key: "{{ lookup('file', '/home/troy/data/keys/ssh/id_ed25519.pub') }}"
+        state: present
+        exclusive: true
