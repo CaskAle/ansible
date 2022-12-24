@@ -4,6 +4,8 @@ add_packages:
   - lm-sensors
   - podman
   - bpytop
+  - nano
+  - vim
 
 remove_packages:
   - htop

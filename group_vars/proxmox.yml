@@ -3,6 +3,8 @@ add_packages:
   - zsh
   - lm-sensors
   - bpytop
+  - nano
+  - vim
 
 remove_packages:
   - htop
