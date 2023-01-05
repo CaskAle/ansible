@@ -1,32 +1,28 @@
 ---
-- name: prepare raspberry pis after initial build
-  hosts: pios
+- name: prepare raspberry pis (pi_os) after initial build
+  hosts: pi_os
   become: true
 
   tasks:
-    - name: diplay the os family
-      debug:
-        msg: "{{ ansible_facts['os_family'] }} System"
-    
-    - name: ensure device boots to console
-      file:
+    - name: ensure pi_os device boots to console
+      ansible.builtin.file:
         dest: /etc/systemd/system/default.target
         src: /lib/systemd/system/multi-user.target
         state: link
-      when: '"pi" in group_names'
+      when: '"pi_os" in group_names'
       notify:
         - reboot
 
-    - name: ensure hdmi_force_hotplug=1 is set in /boot/config.txt on pios devices
-      lineinfile:
+    - name: ensure hdmi_force_hotplug=1 is set in /boot/config.txt on pi_os devices
+      ansible.builtin.lineinfile:
         path: /boot/config.txt
         regex: '^hdmi_force_hotplug'
         insertafter: '#hdmi_force_hotplug'
         line: 'hdmi_force_hotplug=1'
-      when: '"pios" in group_names'
+      when: '"pi_os" in group_names'
       notify:
         - reboot
 
   handlers:
-    - name: reboot
+    - name: ansible.builtin.reboot
       reboot:

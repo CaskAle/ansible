@@ -21,12 +21,14 @@
         name: ansible
         state: present
         groups: nopasswd
+        shell: /bin/bash
 
     - name: create troy user
       ansible.builtin.user:
         name: troy
         state: present
         groups: nopasswd
+        shell: /bin/zsh
 
     - name: copy ssh key to ansible authorized keys
       ansible.posix.authorized_key:

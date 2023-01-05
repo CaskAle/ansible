@@ -4,6 +4,7 @@ all:
       children:
         pi_os:
         fedora:
+        arch:
     proxmox:
       hosts:
         wandsworth.ankersen.dev:
@@ -14,3 +15,7 @@ all:
     fedora:
       hosts:
         mordecai.ankersen.dev:
+        tubofgoo.ankersen.dev:
+    arch:
+      hosts:    
+        chiswick.ankersen.dev:
