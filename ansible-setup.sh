@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOSTS="chiswick.ankersen.dev"
+HOSTS="services.ankersen.dev"
 USER="troy"
 
 echo "Creating ansible user on ${HOSTS} group."
@@ -14,8 +14,8 @@ ansible ${HOSTS} \
           state=present \
           system=true" \
   --become \
- # --ask-become-pass \
- # --ask-pass
+  --ask-become-pass \
+  --ask-pass
 
 # ensure sudoers allowance for group nopasswd
 ansible ${HOSTS} \
@@ -25,8 +25,8 @@ ansible ${HOSTS} \
           content='%ansible ALL=(ALL:ALL) NOPASSWD: ALL\n' \
           dest='/etc/sudoers.d/010_nopasswd'" \
   --become \
-  #--ask-become-pass \
-  #--ask-pass
+  --ask-become-pass \
+  --ask-pass
 
 # ensure ansible user exists
 ansible ${HOSTS} \
@@ -37,8 +37,8 @@ ansible ${HOSTS} \
           state=present \
           shell='/bin/bash'" \
   --become \
-  #--ask-become-pass \
-  #--ask-pass
+  --ask-become-pass \
+  --ask-pass
 
 # add authorized key for ansible user
 ansible ${HOSTS} \
@@ -48,5 +48,5 @@ ansible ${HOSTS} \
           user=ansible state=present \
           exclusive=true" \
   --become \
-  #--ask-become-pass \
-  #--ask-pass
+  --ask-become-pass \
+  --ask-pass

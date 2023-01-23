@@ -1,10 +1,15 @@
 all:
   children:
+    servers:
+      hosts:
+        services.ankersen.dev:
     clients:
       children:
         pi_os:
         fedora:
         arch:
+      hosts:
+        services.ankersen.dev:  
     proxmox:
       hosts:
         wandsworth.ankersen.dev:

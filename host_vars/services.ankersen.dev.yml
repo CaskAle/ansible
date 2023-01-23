@@ -1,9 +1,13 @@
 ---
 add_packages:
-  - lm-sensors
+  - cockpit
+  - lm_sensors
+  - podman
   - bpytop
   - nano
   - vim
+  - haproxy
+  - httpd
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting

@@ -1,12 +1,14 @@
 ---
 add_packages:
   - cockpit
-  - zsh
   - lm_sensors
   - podman
   - bpytop
   - nano
   - vim
+  - zsh
+  - zsh-autosuggestions
+  - zsh-syntax-highlighting
 
 remove_packages:
   - htop
