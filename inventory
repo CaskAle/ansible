@@ -2,25 +2,17 @@ all:
   children:
     servers:
       hosts:
-        services.ankersen.dev:
+        benson.ankersen.dev:
+        pops.ankersen.dev:
     clients:
       children:
         pi_os:
         fedora:
+          hosts:
+            e420.ankersen.dev:
         arch:
-      hosts:
-        services.ankersen.dev:  
+          hosts:
+            x220.ankersen.dev:
     proxmox:
       hosts:
-        wandsworth.ankersen.dev:
         hackney.ankersen.dev:
-    pi_os:
-      hosts:
-        rigby.ankersen.dev:
-    fedora:
-      hosts:
-        mordecai.ankersen.dev:
-        tubofgoo.ankersen.dev:
-    arch:
-      hosts:    
-        chiswick.ankersen.dev:

@@ -1,9 +1,19 @@
 ---
 - name: install/update software on systems
-  hosts: servers, clients
+  hosts: servers
   become: true
 
   tasks:
+    - name: add software packages
+      ansible.builtin.package:
+        name: "{{ add_packages }}"
+        state: latest
+
+    - name: remove software packages
+      ansible.builtin.package:
+        name: "{{ remove_packages }}"
+        state: absent
+
     - name: system upgrade - dnf
       ansible.builtin.dnf:
         name: '*'
@@ -30,16 +40,6 @@
       notify: 
         - reboot
       when: ansible_facts['os_family'] == "Archlinux"
-
-    - name: add software packages
-      ansible.builtin.package:
-        name: "{{ add_packages }}"
-        state: latest
-
-    - name: remove software packages
-      ansible.builtin.package:
-        name: "{{ remove_packages }}"
-        state: absent
 
   handlers:
     - name: reboot

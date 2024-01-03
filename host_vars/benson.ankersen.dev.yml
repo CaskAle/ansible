@@ -9,10 +9,15 @@ add_packages:
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting
-
+  - bash-completion
+  - httpd
+  - nginx
+  - haproxy
+  - nfs-utils
+  - mlocate
+  
 remove_packages:
   - htop
 
 users:
   - troy
-  

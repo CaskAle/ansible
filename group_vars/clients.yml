@@ -1,6 +1,6 @@
 ---
 add_packages:
-  - lm-sensors
+  - lm_sensors
   - podman
   - bpytop
   - nano
@@ -8,9 +8,11 @@ add_packages:
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting
+  - bash-completion
 
 remove_packages:
   - htop
 
 users:
   - troy
+

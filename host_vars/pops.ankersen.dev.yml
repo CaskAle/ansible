@@ -6,15 +6,20 @@ add_packages:
   - bpytop
   - nano
   - vim
-  - haproxy
-  - httpd
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting
+  - bash-completion
+  - apache
+  - nginx
+  - haproxy
+  - nfs-utils
+  - mlocate
+  - git 
+  - qemu-guest-agent
 
 remove_packages:
   - htop
 
 users:
   - troy
-  
