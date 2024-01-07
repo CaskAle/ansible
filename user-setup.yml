@@ -4,38 +4,12 @@
   become: true
 
   tasks:
-    - name: create nopasswd group for sudo nopasswd access
-      ansible.builtin.group:
-        name: nopasswd
-        state: present
-        system: true
-
-    - name: create /etc/sudoers.d/010_nopasswd file for sudo nopasswd access
-      ansible.builtin.copy:
-        dest: /etc/sudoers.d/010_nopasswd
-        mode: "0440"
-        content: "%nopasswd ALL=(ALL) NOPASSWD: ALL\n"
-
-    - name: create ansible user
-      ansible.builtin.user:
-        name: ansible
-        state: present
-        groups: nopasswd
-        shell: /bin/bash
-
     - name: create troy user
       ansible.builtin.user:
         name: troy
         state: present
         groups: nopasswd
         shell: /bin/zsh
-
-    - name: copy ssh key to ansible authorized keys
-      ansible.posix.authorized_key:
-        user: ansible
-        key: "{{ lookup('file', 'files/id_ed25519-ansible.pub') }}"
-        state: present
-        exclusive: true
 
     - name: copy ssh key to troy authorized keys
       ansible.posix.authorized_key:
