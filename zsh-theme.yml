@@ -1,7 +1,6 @@
 ---
 - name: install and configure zsh and oh-my-zsh for zsh_users
   hosts: iot servers laptops
-  remote_user: ansible
   become: true
 
   vars:
