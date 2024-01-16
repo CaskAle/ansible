@@ -1,6 +1,6 @@
 ---
 - name: install/update software on systems
-  hosts: servers
+  hosts: clients
   become: true
 
   tasks:

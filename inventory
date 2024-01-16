@@ -3,16 +3,17 @@ all:
     servers:
       hosts:
         benson.ankersen.dev:
-        pops.ankersen.dev:
     clients:
       children:
         pi_os:
         fedora:
           hosts:
             e420.ankersen.dev:
+            putney.ankersen.dev:
         arch:
           hosts:
             x220.ankersen.dev:
-    proxmox:
+    vm-hosts:
       hosts:
         hackney.ankersen.dev:
+        porter.ankersen.dev
