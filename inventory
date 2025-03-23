@@ -13,7 +13,7 @@ all:
         arch:
           hosts:
             x220.ankersen.dev:
-    vm-hosts:
+    vm_hosts:
       hosts:
-        hackney.ankersen.dev:
-        porter.ankersen.dev
+        porter.ankersen.dev:
+        bitter.ankersen.dev:

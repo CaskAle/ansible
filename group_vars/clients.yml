@@ -5,11 +5,13 @@ add_packages:
   - bpytop
   - nano
   - vim
+  - micro
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting
   - bash-completion
-
+  - mlocate
+  
 remove_packages:
   - htop
 

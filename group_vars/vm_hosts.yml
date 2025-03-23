@@ -1,19 +1,23 @@
 ---
 add_packages:
-  - cockpit
   - lm_sensors
   - podman
   - bpytop
   - nano
   - vim
+  - micro
   - zsh
   - zsh-autosuggestions
   - zsh-syntax-highlighting
-  - bash-completion
-  - httpd
-  - nginx
-  - haproxy
+  - qemu-kvm-core
+  - libvirt
+  - virt-install
+  - cockpit
+  - cockpit-machines
+  - cockpit-pcp
+  - guestfs-tools
   - nfs-utils
+  - tuned
   - mlocate
   
 remove_packages:
@@ -21,3 +25,4 @@ remove_packages:
 
 users:
   - troy
+

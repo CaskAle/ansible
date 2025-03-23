@@ -1,6 +1,6 @@
 ---
 - name: install/update software on systems
-  hosts: clients
+  hosts: vm_hosts
   become: true
 
   tasks:
